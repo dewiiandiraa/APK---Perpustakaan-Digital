@@ -1,0 +1,23 @@
+# TABEL PEMINJAMAN #
+
+CREATE TABLE peminjaman (
+    -> id_peminjaman VARCHAR(10) PRIMARY KEY,
+    -> anggota_id VARCHAR(10) NOT NULL,
+    -> petugas_id VARCHAR(10) DEFAULT NULL,
+    -> tanggal_pengajuan DATE NOT NULL,
+    -> tanggal_pinjam DATE DEFAULT NULL,
+    -> status_peminjaman ENUM('menunggu', 'disetujui', 'ditolak', 'selesai') NOT NULL DEFAULT 'menunggu',
+    -> CONSTRAINT fk_peminjaman_anggota FOREIGN KEY (anggota_id) REFERENCES anggota(id_anggota) ON UPDATE CASCADE ON DELETE RESTRICT,
+    -> CONSTRAINT fk_peminjaman_petugas FOREIGN KEY (petugas_id) REFERENCES petugas(id_petugas) ON UPDATE CASCADE ON DELETE RESTRICT);
+
+desc peminjaman;
++-------------------+--------------------------------------------------+------+-----+----------+-------+
+| Field             | Type                                             | Null | Key | Default  | Extra |
++-------------------+--------------------------------------------------+------+-----+----------+-------+
+| id_peminjaman     | varchar(10)                                      | NO   | PRI | NULL     |       |
+| anggota_id        | varchar(10)                                      | NO   | MUL | NULL     |       |
+| petugas_id        | varchar(10)                                      | YES  | MUL | NULL     |       |
+| tanggal_pengajuan | date                                             | NO   |     | NULL     |       |
+| tanggal_pinjam    | date                                             | YES  |     | NULL     |       |
+| status_peminjaman | enum('menunggu','disetujui','ditolak','selesai') | NO   |     | menunggu |       |
++-------------------+--------------------------------------------------+------+-----+----------+-------+

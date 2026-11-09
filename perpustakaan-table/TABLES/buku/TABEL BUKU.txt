@@ -1,0 +1,26 @@
+# TABEL BUKU #
+
+CREATE TABLE buku (
+    -> id_buku VARCHAR(10) PRIMARY KEY,
+    -> judul VARCHAR(150) NOT NULL,
+    -> penulis VARCHAR(100) NOT NULL,
+    -> penerbit VARCHAR(100),
+    -> tahun_terbit YEAR,
+    -> kategori VARCHAR(50),
+    -> stok_total INT NOT NULL DEFAULT 0,
+    -> stok_tersedia INT NOT NULL DEFAULT 0,
+    -> CONSTRAINT chk_stok_buku CHECK (stok_total >= 0 AND stok_tersedia >= 0 AND stok_tersedia <= stok_total));
+
+desc buku;
++---------------+--------------+------+-----+---------+-------+
+| Field         | Type         | Null | Key | Default | Extra |
++---------------+--------------+------+-----+---------+-------+
+| id_buku       | varchar(10)  | NO   | PRI | NULL    |       |
+| judul         | varchar(150) | NO   |     | NULL    |       |
+| penulis       | varchar(100) | NO   |     | NULL    |       |
+| penerbit      | varchar(100) | YES  |     | NULL    |       |
+| tahun_terbit  | year         | YES  |     | NULL    |       |
+| kategori      | varchar(50)  | YES  |     | NULL    |       |
+| stok_total    | int          | NO   |     | 0       |       |
+| stok_tersedia | int          | NO   |     | 0       |       |
++---------------+--------------+------+-----+---------+-------+

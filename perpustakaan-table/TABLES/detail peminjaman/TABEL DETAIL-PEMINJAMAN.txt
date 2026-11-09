@@ -1,0 +1,25 @@
+# TABEL DETAIL-PEMINJAMAN #
+
+CREATE TABLE detail_peminjaman (
+    -> id_detail VARCHAR(10) PRIMARY KEY,
+    -> peminjaman_id VARCHAR(10) NOT NULL,
+    -> buku_id VARCHAR(10) NOT NULL,
+    -> jumlah INT NOT NULL DEFAULT 1,
+    -> tanggal_jatuh_tempo DATE DEFAULT NULL,
+    -> tanggal_kembali DATE DEFAULT NULL,
+    -> CONSTRAINT chk_jumlah_buku CHECK (jumlah > 0),
+    -> CONSTRAINT uq_peminjaman_buku UNIQUE (peminjaman_id, buku_id),
+    -> CONSTRAINT fk_detail_peminjaman FOREIGN KEY (peminjaman_id) REFERENCES peminjaman(id_peminjaman) ON UPDATE CASCADE ON DELETE RESTRICT,
+    -> CONSTRAINT fk_detail_buku FOREIGN KEY (buku_id) REFERENCES buku(id_buku) ON UPDATE CASCADE ON DELETE RESTRICT);
+
+desc detail_peminjaman;
++---------------------+-------------+------+-----+---------+-------+
+| Field               | Type        | Null | Key | Default | Extra |
++---------------------+-------------+------+-----+---------+-------+
+| id_detail           | varchar(10) | NO   | PRI | NULL    |       |
+| peminjaman_id       | varchar(10) | NO   | MUL | NULL    |       |
+| buku_id             | varchar(10) | NO   | MUL | NULL    |       |
+| jumlah              | int         | NO   |     | 1       |       |
+| tanggal_jatuh_tempo | date        | YES  |     | NULL    |       |
+| tanggal_kembali     | date        | YES  |     | NULL    |       |
++---------------------+-------------+------+-----+---------+-------+
