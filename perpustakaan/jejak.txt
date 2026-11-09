@@ -1,4 +1,0 @@
-[1] membuka jendela login
-[2] jendela login selesai, session = None
--> Login ditutup tanpa sesi, program berhenti
-[SELESAI] program berakhir normal

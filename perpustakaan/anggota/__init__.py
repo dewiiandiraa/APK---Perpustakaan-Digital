@@ -1,1 +1,0 @@
-from .anggota import Anggota
